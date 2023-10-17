@@ -5,6 +5,10 @@ class Solution(object):
         :type val: int
         :rtype: int
         """
-        while (val in nums):
-            nums.remove(val)
+        try:
+            while True:
+                nums.remove(val)
+        except ValueError:
+            pass
+
         return len(nums)
