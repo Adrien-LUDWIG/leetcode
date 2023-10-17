@@ -5,7 +5,6 @@ class Solution(object):
         :type val: int
         :rtype: int
         """
-        
         for _ in range(nums.count(val)):
             nums.remove(val)
 
