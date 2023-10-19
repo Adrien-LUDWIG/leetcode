@@ -1,17 +1,3 @@
-def recMaxProfit(prices, day, has_action=False):
-    if day == len(prices):
-        return 0 # No more action possible
-
-    # Wait and see until the next day
-    do_nothing = recMaxProfit(prices, day + 1, has_action=has_action)
-
-    if has_action: # Sell
-        sell = prices[day] + recMaxProfit(prices, day + 1, has_action=False)
-        return max(do_nothing, sell)
-    else: # Buy
-        buy = -prices[day] + recMaxProfit(prices, day + 1, has_action=True)
-        return max(do_nothing, buy)
-
 class Solution(object):
     def maxProfit(self, prices):
         """
@@ -19,7 +5,9 @@ class Solution(object):
         :rtype: int
         """
 
-        # The problem is similar to caclulating the ascent for a hiking path
+        # Point of view that unlocked the problem for me:
+        # The problem is similar to caclulating the ascent for a hiking path.
+        # The max profit is equal to all the cumulative price increases.
 
         max_profit = 0
         # We need to start by buying to be able to sell
