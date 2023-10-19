@@ -14,7 +14,7 @@ class Solution(object):
         buying_price = prices[0]
 
         for i in range(1, len(prices)):
-            # But we keep looking for the best price to buy
+            # We update our buying price if we find better
             buying_price = min(buying_price, prices[i])
 
             # If it's the last day or stock value is about to fall, we sell
