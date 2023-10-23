@@ -6,8 +6,5 @@ class Solution(object):
         :type n: int
         :rtype: bool
         """
-        if n <= 0:
-            return False
-
-        return math.log(n, 4).is_integer()
+        return n > 0 and math.log(n, 4).is_integer()
         
