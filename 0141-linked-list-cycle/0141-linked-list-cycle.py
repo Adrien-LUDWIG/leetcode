@@ -10,12 +10,10 @@ class Solution(object):
         :type head: ListNode
         :rtype: bool
         """
-        elements = set()
-
         while head != None:
-            if head in elements:
+            if head.val == 1e6:
                 return True
-            elements.add(head)
+            head.val = 1e6
             head = head.next
         
         return False
