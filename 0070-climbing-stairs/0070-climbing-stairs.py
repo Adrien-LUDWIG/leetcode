@@ -8,8 +8,7 @@ class Solution(object):
         step1 = 1
         step2 = 2
 
-        for _ in range((n-1)//2):
-            step1 += step2
-            step2 += step1
+        for _ in range(n-1):
+            step1, step2 = step2, step1 + step2
 
-        return step1 if n % 2 == 1 else step2
+        return step1
