@@ -1,4 +1,4 @@
-from math import ceil, log
+from math import log
 class Solution(object):
     def poorPigs(self, buckets, minutesToDie, minutesToTest):
         """
@@ -8,5 +8,5 @@ class Solution(object):
         :rtype: int
         """
         EPSILON = 0.1
-        tries = minutesToTest / minutesToDie
-        return int(ceil(log(buckets - EPSILON, tries + 1)))
+        tries = minutesToTest // minutesToDie
+        return int(log(buckets - EPSILON, tries + 1) + 1)
