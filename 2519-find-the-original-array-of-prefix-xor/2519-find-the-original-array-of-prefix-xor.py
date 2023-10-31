@@ -4,11 +4,9 @@ class Solution(object):
         :type pref: List[int]
         :rtype: List[int]
         """
-        arr = []
-        total = 0
+        arr = [pref[0]]
         
-        for i in range(len(pref)):
-            arr.append(total ^ pref[i])
-            total ^= arr[i]
+        for i in range(1, len(pref)):
+            arr.append(pref[i-1] ^ pref[i])
         
         return arr
