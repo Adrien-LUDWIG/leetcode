@@ -1,28 +1,22 @@
+from collections import defaultdict
+
 # Definition for a binary tree node.
-# class TreeNode(object):
+# class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
 #         self.val = val
 #         self.left = left
 #         self.right = right
-class Solution(object):
-    def findMode(self, root):
-        """
-        :type root: TreeNode
-        :rtype: List[int]
-        """
+class Solution:
+    def findMode(self, root: Optional[TreeNode]) -> List[int]:
         def dfs(root):
             if root is None:
                 return
             
-            if root.val in occurrencies:
-                occurrencies[root.val] += 1
-            else:
-                occurrencies[root.val] = 1
-            
+            occurrencies[root.val] += 1
             dfs(root.left)
             dfs(root.right)
 
-        occurrencies = {}
+        occurrencies = defaultdict(int)
 
         dfs(root)
 
