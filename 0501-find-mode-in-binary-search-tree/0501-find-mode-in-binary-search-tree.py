@@ -8,19 +8,42 @@ from collections import defaultdict
 #         self.right = right
 class Solution:
     def findMode(self, root: Optional[TreeNode]) -> List[int]:
-        def dfs(root):
+        def dfs(root, values):
+            """
+            Given a Binary Search Tree, create a sorted list of values.
+            Create the inorder traversal list.
+            """
+
             if root is None:
                 return
-            
-            occurrencies[root.val] += 1
-            dfs(root.left)
-            dfs(root.right)
 
-        occurrencies = defaultdict(int)
+            dfs(root.left, values)
+            values.append(root.val)
+            dfs(root.right, values)
 
-        dfs(root)
+        # Create sorted list of values
+        values = []
+        dfs(root, values)
 
-        max_occurrencies = max(occurrencies.values())
-        modes = [key for key, value in occurrencies.items() if value == max_occurrencies]
+        modes = []
+        max_count = 0
+        index = 0
 
+        while index < len(values):
+            value = values[index]
+            start_index = index
+
+            while index < len(values) and values[index] == value:
+                index += 1
+
+            count = index - start_index
+
+            # If this is the most seen value
+            if max_count < count:
+                # Reset the list of modes to contain this value only
+                modes = [value]
+                max_count = count
+            elif max_count == count:
+                modes.append(value)
+                
         return modes
