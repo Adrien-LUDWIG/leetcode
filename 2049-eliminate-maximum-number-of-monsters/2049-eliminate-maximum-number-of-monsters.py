@@ -1,4 +1,4 @@
-from heapq import heappush, heappop
+from heapq import heapify, heappop
 
 class Solution:
     def eliminateMaximum(self, dist: List[int], speed: List[int]) -> int:
@@ -8,7 +8,10 @@ class Solution:
 
         for d, s in zip(dist, speed):
             # Time = Distance / Speed
-            heappush(time, d / s)
+            time.append(d / s)
+
+        # Sort to know in which order to kill monsters
+        heapify(time)
 
         # The number of shots is equal to the number of monsters killed
         shots = 0
