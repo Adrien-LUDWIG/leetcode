@@ -2,8 +2,7 @@
 
 [My solutions](https://leetcode.com/Adrien-LUDWIG/) to the LeetCode problems.
 
-These might not be the most optimized solutions for each problem. My priority is
-readability. 🥸
+I try to strike a balance between optimization and readability. 🥸
 
 ## Contributing
 
