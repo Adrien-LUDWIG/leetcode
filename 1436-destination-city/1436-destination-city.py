@@ -1,6 +1,10 @@
 class Solution:
     def destCity(self, paths: List[List[str]]) -> str:
-        srcs, dsts = zip(*paths)
-        srcs = set(srcs)
-        dsts = set(dsts)
+        srcs = set()
+        dsts = set()
+
+        for src, dst in paths:
+            srcs.add(src)
+            dsts.add(dst)
+
         return (dsts - srcs).pop()
