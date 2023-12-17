@@ -18,7 +18,7 @@ class FoodRatings:
         self._food_rating[food] = newRating
 
         cuisine = self._food_cuisine[food]
-        self._cuisine_ratings[cuisine].discard((-oldRating, food))
+        self._cuisine_ratings[cuisine].remove((-oldRating, food))
         self._cuisine_ratings[cuisine].add((-newRating, food))
 
     def highestRated(self, cuisine: str) -> str:
