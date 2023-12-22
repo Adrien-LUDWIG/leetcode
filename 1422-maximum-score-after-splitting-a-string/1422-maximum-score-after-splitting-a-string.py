@@ -1,13 +1,18 @@
 class Solution:
     def maxScore(self, s: str) -> int:
-        max_score = 0
-        left_score = 0
-        right_score = s.count("1")
+        score = 0
+        left_zeros = 0
+        right_ones = len(s) - (s[-1] == "0")
         
         for bit in s[:-1]: 
-            left_score += bit == "0"
-            right_score -= bit == "1"
-            max_score = max(max_score, left_score + right_score) 
-        
-        return max_score
+
+            right_ones -= 1
+
+            if bit == "1":
+                score = max(score, left_zeros + right_ones)
+            else: # bit == "0"
+                left_zeros += 1
+                score = max(score - 1, left_zeros + right_ones)
+            
+        return score
 
