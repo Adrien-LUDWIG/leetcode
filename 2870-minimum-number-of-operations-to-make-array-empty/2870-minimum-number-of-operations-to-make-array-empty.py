@@ -6,18 +6,8 @@ class Solution:
         counter = Counter(nums)
         
         for count in counter.values():
-            while count != 0:
-                
-                if count > 4 or count == 3:
+            if count == 1:
+                return -1
+            operation_count += (count + 2) // 3
 
-                    count -= 3
-                elif count == 2 or count == 4:
-
-                    count -= 2
-                else:
-                    return -1
-                
-                operation_count += 1
-
-        
         return operation_count
