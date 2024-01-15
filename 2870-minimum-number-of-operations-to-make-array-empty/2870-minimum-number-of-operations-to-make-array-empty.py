@@ -8,6 +8,6 @@ class Solution:
         for count in counter.values():
             if count == 1:
                 return -1
-            operation_count += (count + 2) // 3
+            operation_count += ceil(count / 3)
 
         return operation_count
