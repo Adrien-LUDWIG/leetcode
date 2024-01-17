@@ -26,7 +26,7 @@ class RandomizedSet:
         return True
 
     def getRandom(self) -> int:
-        return self._values[randint(0, len(self._values) - 1)]
+        return random.choice(self._values)
 
 
 # Your RandomizedSet object will be instantiated and called as such:
