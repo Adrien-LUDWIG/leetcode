@@ -1,14 +1,13 @@
 class RandomizedSet:
-
     def __init__(self):
         self._values = []
-        self._values_indices = {}
+        self._indices = {}
 
     def insert(self, val: int) -> bool:
-        if val in self._values_indices:
+        if val in self._indices:
             return False
 
-        self._values_indices[val] = len(self._values)
+        self._indices[val] = len(self._values)
         self._values.append(val)
         return True
 
@@ -16,9 +15,14 @@ class RandomizedSet:
         if val not in self._values:
             return False
 
-        last_val = self._values.pop()
-        self._values_indices[last_val] = self._values_indices.pop(val)
-        self._values[self._values_indices[last_val]] = last_val
+        # Replace val by last element (or itself if it is the last element)
+        self._indices[self._values[-1]] = self._indices[val]
+        self._values[self._indices[val]] = self._values[-1]
+
+        # Remove last element
+        self._values.pop()
+        self._indices.pop(val)
+
         return True
 
     def getRandom(self) -> int:
