@@ -1,14 +1,9 @@
-class Solution(object):
-    def climbStairs(self, n):
-        """
-        :type n: int
-        :rtype: int
-        """
-
-        step1 = 1
-        step2 = 2
-
-        for _ in range(n-1):
-            step1, step2 = step2, step1 + step2
-
-        return step1
+class Solution:
+    def climbStairs(self, n: int) -> int:
+        @cache
+        def rec(n):
+            if n < 2:
+                return 1
+            return rec(n-2) + rec(n-1)
+        
+        return rec(n)
