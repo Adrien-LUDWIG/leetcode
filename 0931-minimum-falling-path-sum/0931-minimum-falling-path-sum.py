@@ -4,11 +4,11 @@ class Solution:
         line = matrix[0]
 
         for i in range(1, height):
-            new_line = [float("inf")] * width
+            new_line = []
 
             for j in range(width):
-                for j_ in range(max(0, j-1), min(width, j+2)):
-                    new_line[j] = min(new_line[j], line[j_] + matrix[i][j])
+                start, stop = max(0, j-1), min(width, j+2)
+                new_line.append(min(line[start:stop]) + matrix[i][j])
             
             line = new_line
         
