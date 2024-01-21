@@ -7,12 +7,12 @@ class Solution:
 
         # Find the best possible profit
         dp = [0]
-        ends = [0]
+        ends = []
 
-        for i, (end, start, profit) in enumerate(jobs, start=1):
+        for end, start, profit in jobs:
             # Find last compatible job to test if the current one should be kept
-            last_compatible = bisect_right(ends, start) - 1
-            total_profit = max(profit + dp[last_compatible], dp[- 1])
+            last_compatible = bisect_right(ends, start)
+            total_profit = profit + dp[last_compatible]
             
             # If keeping this job is the new best choice, add it to the possibilities
             if total_profit > dp[-1]:
