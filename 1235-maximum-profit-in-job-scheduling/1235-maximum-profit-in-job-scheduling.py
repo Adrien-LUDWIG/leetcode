@@ -3,20 +3,14 @@ class Solution:
         n = len(profit)
 
         # Sort jobs by end time
-        endTime, startTime, profit = map(list, zip(*sorted(zip(endTime, startTime, profit))))
-
-        # Count of jobs that ends before job[i] starts
-        end_before = [0] * n
-
-        for i in range(1, n):
-            end_before[i] += bisect_right(endTime, startTime[i])
+        jobs = sorted(zip(endTime, startTime, profit))
+        endTime = [job[0] for job in jobs]
 
         # Find the best possible profit
-        end_before.insert(0, 0)
-        profit.insert(0, 0)
         dp = [0] * (n + 1)
 
-        for i in range(1, n + 1):
-            dp[i] = max(profit[i] + dp[end_before[i]], dp[i - 1])
+        for i, (end, start, profit) in enumerate(jobs, start=1):
+            last_compatible = bisect_right(endTime, start, hi=i)
+            dp[i] = max(profit + dp[last_compatible], dp[i - 1])
         
         return dp[-1]
